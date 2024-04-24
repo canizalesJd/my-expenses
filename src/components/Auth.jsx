@@ -7,6 +7,7 @@ import {
 	CardFooter,
 	Input,
 	Button,
+	Spinner,
 } from "@nextui-org/react";
 
 export default function Auth() {
@@ -47,7 +48,14 @@ export default function Auth() {
 				</CardBody>
 				<CardFooter>
 					<Button onClick={handleLogin} color="primary">
-						{loading ? <span>Loading</span> : <span>Send magic link</span>}
+						{loading ? (
+							<div className="flex gap-2">
+								Loading
+								<Spinner color="white" size="sm" />
+							</div>
+						) : (
+							"Send magic link"
+						)}
 					</Button>
 				</CardFooter>
 			</Card>
