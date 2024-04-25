@@ -1,14 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../utils/supabaseClient";
-import {
-	Card,
-	CardHeader,
-	CardBody,
-	CardFooter,
-	Input,
-	Button,
-	Spinner,
-} from "@nextui-org/react";
+import { Input, Button, Spinner } from "@nextui-org/react";
+import GoogleIcon from "./icons/GoogleIcon";
 
 export default function Auth() {
 	const [loading, setLoading] = useState(false);
@@ -29,36 +22,73 @@ export default function Auth() {
 	};
 
 	return (
-		<div className="flex max-h-screen h-screen w-full justify-center items-center">
-			<Card className="w-[400px] p-5 bg-zinc-900" shadow="md">
-				<CardHeader>
-					<h2 className="text-2xl font-semibold">Sign In</h2>
-				</CardHeader>
-				<CardBody>
+		<div className="grid md:grid-cols-2 min-h-screen w-full gap-9">
+			<div className="p-10 flex flex-col justify-evenly bg-zinc-950 max-w-lg">
+				<div className="absolute top-10">
+					<h1 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+						MyExpenses
+					</h1>
+				</div>
+				<div className="max-w-md">
+					<div className="mb-10">
+						<h2 className="text-3xl font-semibold">Welcome back</h2>
+						<p className="text-lg text-foreground-500">
+							Enter your credentials to continue
+						</p>
+					</div>
 					<Input
 						isRequired
 						type="email"
 						label="Email"
-						defaultValue="Your email"
-						className="max-w-xs"
+						placeholder="johndoe@email.com"
+						labelPlacement="outside"
+						className="w-full max-w-full"
 						value={email}
 						required={true}
+						variant="bordered"
+						radius="sm"
 						onChange={(e) => setEmail(e.target.value)}
 					/>
-				</CardBody>
-				<CardFooter>
-					<Button onClick={handleLogin} color="primary">
+					<Button
+						radius="sm"
+						onClick={handleLogin}
+						color="primary"
+						size="md"
+						className="w-full mt-5 max-w-full">
 						{loading ? (
 							<div className="flex gap-2">
 								Loading
 								<Spinner color="white" size="sm" />
 							</div>
 						) : (
-							"Send magic link"
+							"Continue with email"
 						)}
 					</Button>
-				</CardFooter>
-			</Card>
+					<span className="flex items-center my-5">
+						<span className="h-px flex-1 bg-foreground-200"></span>
+						<span className="shrink-0 px-3 text-foreground-400 text-sm">
+							OR
+						</span>
+						<span className="h-px flex-1 bg-foreground-200"></span>
+					</span>
+					<Button
+						endContent={<GoogleIcon />}
+						radius="sm"
+						color="default"
+						size="md"
+						variant="ghost"
+						className="w-full max-w-full">
+						{loading ? (
+							<div className="flex gap-2">
+								Loading
+								<Spinner color="white" size="sm" />
+							</div>
+						) : (
+							"Continue with Google"
+						)}
+					</Button>
+				</div>
+			</div>
 		</div>
 	);
 }
