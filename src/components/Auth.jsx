@@ -2,6 +2,7 @@ import { useState } from "react";
 import { supabase } from "../utils/supabaseClient";
 import { Input, Button, Spinner } from "@nextui-org/react";
 import GoogleIcon from "./icons/GoogleIcon";
+import heroImg from "../assets/woman-laptop.webp";
 
 export default function Auth() {
 	const [loading, setLoading] = useState(false);
@@ -22,17 +23,15 @@ export default function Auth() {
 	};
 
 	return (
-		<div className="grid md:grid-cols-2 min-h-screen w-full gap-9">
-			<div className="p-10 flex flex-col justify-evenly bg-zinc-950 max-w-lg">
-				<div className="absolute top-10">
-					<h1 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-						MyExpenses
-					</h1>
-				</div>
-				<div className="max-w-md">
-					<div className="mb-10">
+		<div className="grid lg:grid-cols-[600px_minmax(0px,_1fr)_0px] min-h-screen w-full overflow-hidden">
+			<div className="p-10 flex flex-col justify-center max-w-full relative">
+				<h1 className="text-2xl font-black text-black absolute top-10 w-full">
+					MyExpenses
+				</h1>
+				<div className="w-[400px] max-w-full mx-auto">
+					<div className="my-10">
 						<h2 className="text-3xl font-semibold">Welcome back</h2>
-						<p className="text-lg text-foreground-500">
+						<p className="text-lg text-foreground-500 mt-1">
 							Enter your credentials to continue
 						</p>
 					</div>
@@ -72,7 +71,7 @@ export default function Auth() {
 						<span className="h-px flex-1 bg-foreground-200"></span>
 					</span>
 					<Button
-						endContent={<GoogleIcon />}
+						startContent={<GoogleIcon className="text-lg" />}
 						radius="sm"
 						color="default"
 						size="md"
@@ -88,6 +87,24 @@ export default function Auth() {
 						)}
 					</Button>
 				</div>
+			</div>
+			<div className="hidden relative lg:block">
+				<div className="absolute h-full w-full bg-black/[.6] bg-blend-normal flex flex-col justify-end">
+					<div className="p-10 pb-20 max-h-full">
+						<h2 className="text-5xl font-bold text-white max-w-4xl">
+							Start taking care of your expenses
+						</h2>
+						<p className="text-xl text-white mt-3 font-semibold max-w-3xl">
+							Login or create your account for free, and start tracking your
+							personal expenses and budget.
+						</p>
+					</div>
+				</div>
+				<img
+					src={heroImg}
+					alt="Smiling Woman using a laptop"
+					className="h-full w-full object-cover"
+				/>
 			</div>
 		</div>
 	);
